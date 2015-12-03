@@ -48,6 +48,7 @@
                     <ul>
                         <li><strong>FaceBook:</strong> {!! $profile->facebook or '<span class="glyphicon glyphicon-question-sign"></span>' !!}</li>
                         <li><strong>Twitter:</strong> {!! $profile->twitter or '<span class="glyphicon glyphicon-question-sign"></span>' !!}</li>
+                        <li><strong>Website:</strong> {!! $profile->website or '<span class="glyphicon glyphicon-question-sign"></span>' !!}</li>
                     </ul>
                 </div>
             </div>

@@ -33,6 +33,22 @@
             <!-- am/pm -->
             {!! Form::hidden('am_pm', $observation->observed_at->format('A')) !!}
 
+            <div class="well entry-mode">
+                <div class="radio">
+                    <label for="">
+                        {!! Form::radio('in_field', 1) !!}
+                        In-Field Observation
+                    </label>
+                </div>
+
+                <div class="radio">
+                    <label for="">
+                        {!! Form::radio('in_field', 0) !!}
+                        Manual Observation
+                    </label>
+                </div>
+            </div>
+
             <!-- first name -->
             <div class="form-group {{ $errors->has('ObserverNameF') ? 'has-error' : '' }}">
                 {!! Form::label('ObserverNameF', 'First Name:') !!}

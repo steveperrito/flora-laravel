@@ -23,7 +23,8 @@ class FloraObserve extends Model
         'Temp',
         'SoilType',
         'Notes',
-        'in_field'
+        'in_field',
+        'observed_at'
     ];
 
     /**
@@ -39,17 +40,6 @@ class FloraObserve extends Model
      * @var string
      */
     protected $table = 'FloraObserves';
-
-    /**
-     * Compose observed_at data.
-     *
-     * @param $date_str
-     */
-    protected function setObservedAtAttribute($date_str)
-    {
-        $date_str = explode('|', $date_str);
-        $this->attributes['observed_at'] = Carbon::createFromFormat('Y-m-d h:i:s A', $date_str[0] . ' ' . $date_str[1] . ':00 ' . $date_str[2])->toDateTimeString();
-    }
 
     /**
      * Make sure Lat gets a value of null if not used.
