@@ -53,7 +53,21 @@ class ProfilesController extends Controller
     public function show()
     {
         $profile = Profile::where('user_id', '=', \Auth::user()->id)->first();
+        $nulls = 0;
+        $no_val_html = '<a href="#myProfileModal" data-toggle="modal" role="button"><span class="glyphicon glyphicon-question-sign text-danger"></span></a>';
+        if ($profile['attributes']) {
+            $prof_attrs = count($profile['attributes']) - 4;
+            foreach($profile['attributes'] as $attr) {
+                if($attr == null) {
+                    $nulls += 1;
+                }
+            }
 
-        return view('profile.show', ['profile' => $profile]);
+            $nulls = number_format((($prof_attrs - $nulls)/$prof_attrs)*100, 0);
+        }
+
+        /*dd($nulls);*/
+
+        return view('profile.show', ['profile' => $profile, 'nulls' => $nulls, 'no_val' => $no_val_html]);
     }
 }

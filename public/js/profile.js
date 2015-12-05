@@ -1,0 +1,3 @@
+$(function(){
+  $('#completeness').circliful();
+});

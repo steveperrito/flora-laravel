@@ -15,7 +15,7 @@
                     @if($observation->contributor->id == 2)
                         <span data-toggle="tooltip" data-placement="top" title="Guest Submission" class="glyphicon glyphicon-question-sign"></span>
                     @else
-                        <a href="mailto:{{ $observation->contributor->email }}" data-toggle="tooltip" data-placement="top" title="{{ $observation->contributor->email }}"><span class="glyphicon glyphicon-ok-sign text-success"></span></a>
+                        <a href="/profile" data-toggle="tooltip" data-placement="top" title="{{ $observation->contributor->email }}"><span class="glyphicon glyphicon-ok-sign text-success"></span></a>
                     @endif
 
                     {{--<span class="glyphicon glyphicon-user"></span>--}} {{ $observation->ObserverNameF }} {{ $observation->ObserverNameL }}
