@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\FloraObserve;
 use App\SoilType;
 use App\User;
+use Auth;
 
 use App\Http\Requests\ObservationRequest;
 use Illuminate\Http\Request;
@@ -42,8 +43,8 @@ class ObservationController extends Controller
      */
     public function create()
     {
-        $check = \Auth::check();
-        $usr = \Auth::user();
+        $check = Auth::check();
+        $usr = Auth::user();
         $view_data = [
             'select' => $select = SoilType::lists('SoilType', 'id'),
             'fname' => $first = $check ? $usr->f_name : null,
@@ -65,8 +66,8 @@ class ObservationController extends Controller
         $input['observed_at'] = strtotime($input['observed_at'] . ' ' . $input['observed_at_hr'] . ' ' . $input['am_pm']);
         $input = new FloraObserve($input);
 
-        if (\Auth::check()) {
-            \Auth::user()->observations()->save($input);
+        if (Auth::check()) {
+            Auth::user()->observations()->save($input);
         } else {
             User::find(2)->observations()->save($input);
         }
@@ -84,12 +85,14 @@ class ObservationController extends Controller
     {
         $select = SoilType::lists('SoilType', 'id');
         $observation = FloraObserve::findOrFail($id);
+        $user_id = Auth::user()->id;
+        $is_admin = Auth::user()->is_admin;
 
-        if ($observation->user_id == \Auth::user()->id) {
+        if ($observation->user_id == $user_id || $is_admin) {
             return view('observation.edit', ['observation' => $observation, 'select' => $select]);
-        } else {
-            abort(401, 'Unauthorized request.');
         }
+
+        abort(401, 'Unauthorized request.');
     }
 
     /**
@@ -102,8 +105,10 @@ class ObservationController extends Controller
     public function update($id, ObservationRequest $request)
     {
         $observation = FloraObserve::findOrFail($id);
+        $user_id = Auth::user()->id;
+        $is_admin = Auth::user()->is_admin;
 
-        if ($observation->user_id == \Auth::user()->id) {
+        if ($observation->user_id == $user_id || $is_admin) {
 
             $input = $request->all();
             $input['observed_at'] = strtotime($input['observed_at'] . ' ' . $input['observed_at_hr'] . ' ' . $input['am_pm']);
@@ -124,11 +129,14 @@ class ObservationController extends Controller
     public function show($id)
     {
         $observation = FloraObserve::with('soil')->findOrFail($id);
+        $user_id = Auth::user()->id;
+        $is_admin = Auth::user()->is_admin;
 
-        if ($observation->user_id == \Auth::user()->id) {
+        if ($observation->user_id == $user_id || $is_admin) {
             return view('observation.show', compact('observation'));
-        } else {
-            abort(401, 'Unauthorized request.');
         }
+
+        abort(401, 'Unauthorized request.');
+
     }
 }

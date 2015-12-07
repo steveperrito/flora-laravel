@@ -20,8 +20,11 @@ Route::get('/', function(){
 Route::resource('observations', 'ObservationController');
 
 //Profile CRUD tasks
-Route::get('profile', 'ProfilesController@show');
+Route::get('profile', 'ProfilesController@index');
 Route::post('profile', 'ProfilesController@update');
+
+Route::get('profile/{id}', 'ProfilesController@show');
+Route::post('profile/{id}', 'ProfilesController@sudoUpdate');
 
 //Admin
 Route::get('admin', 'AdminController@dash');
