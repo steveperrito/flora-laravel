@@ -1,5 +1,4 @@
 $(function(){
-
   var inFieldRadio = $('input[name=in_field]'),
       latInput = $('input[name=ObservationLat]'),
       lngInput = $('input[name=ObservationLng]'),

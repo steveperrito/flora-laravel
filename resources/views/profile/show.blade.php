@@ -8,7 +8,11 @@
 
     @include('partials.profileModal', ['profile' => $profile])
 
-    @include('partials.profileHeader', ['user' => $profile->user, 'nulls' => $nulls])
+    @if($profile)
+        @include('partials.profileHeader', ['user' => $profile->user, 'nulls' => $nulls])
+    @else
+        @include('partials.profileHeader', ['user' => auth()->user(), 'nulls' => $nulls])
+    @endif
 
     <div class="row">
         <div class="col-sm-4">

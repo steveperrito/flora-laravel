@@ -44,7 +44,7 @@ class ProfilesController extends Controller
             Auth::user()->profile()->save($input);
         }
 
-        return redirect()->action('ProfilesController@show');
+        return redirect()->action('ProfilesController@index');
     }
 
     /**

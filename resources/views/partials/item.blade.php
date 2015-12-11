@@ -4,9 +4,6 @@
             <a class="pull-right" href="{{ action('ObservationController@edit', ['id' => $observation->id]) }}"><span class="glyphicon glyphicon-edit"></span></a></h3>
     </div>
     <div class="panel-body">
-        {{--<div class="member-icon">
-
-        </div>--}}
         <div class="col-sm-4">
             <h4>Observation Details:</h4>
             <ul>
