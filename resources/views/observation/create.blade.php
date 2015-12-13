@@ -1,8 +1,8 @@
 @extends('layout')
 
         @section('sheets')
-        <link rel="stylesheet" href="/css/observe-create.css">
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+            <link rel="stylesheet" href="/css/observe-create.css">
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
         @stop
 
 @section('content')

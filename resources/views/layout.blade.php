@@ -49,15 +49,13 @@
     </div>
 </nav>
 
-<div class="wrap">
+<div class="container-fluid">
     <div class="row">
         <div class="col-sm-12 text-center">
             <img src="/img/logo.jpg" alt="Flora The Explorer">
         </div>
     </div>
-    <div class="container">
-        @yield('content')
-    </div>
+    @yield('content')
     <div class="footer text-center">
         <hr>
         &#169; {{date('o')}}
