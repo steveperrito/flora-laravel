@@ -11,8 +11,10 @@
 
                     @if($observation->contributor->id == 2)
                         <span data-toggle="tooltip" data-placement="top" title="Guest Submission" class="glyphicon glyphicon-question-sign"></span>
+                    @elseif($observation->contributor->profile->id)
+                        <a href="/profile/{{ $observation->contributor->profile->id }}" data-toggle="tooltip" data-placement="top" title="{{ $observation->contributor->email }}"><span class="glyphicon glyphicon-ok-sign text-success"></span></a>
                     @else
-                        <a href="/profile" data-toggle="tooltip" data-placement="top" title="{{ $observation->contributor->email }}"><span class="glyphicon glyphicon-ok-sign text-success"></span></a>
+                        <span data-toggle="tooltip" data-placement="top" title="{{ $observation->contributor->email }}" class="glyphicon glyphicon-ok-sign text-success"></span>
                     @endif
 
                     {{--<span class="glyphicon glyphicon-user"></span>--}} {{ $observation->ObserverNameF }} {{ $observation->ObserverNameL }}
@@ -36,8 +38,9 @@
         @if ($observation->ObservationLat != null && $observation->ObservationLng != null)
 
             <div class="col-sm-4">
-                <div class="responsive-gmaps" style="position: relative;padding-bottom: 75%;height: 0;overflow: hidden;">
-                    <iframe frameborder="0" style="border:0;position: absolute;top: 0;left: 0;width: 100% !important;height: 100% !important;" src="https://www.google.com/maps/embed/v1/search?key=AIzaSyD4ZNMSDhjetfTQGAlUBse5YAKqTlE4HN8&q={{ $observation->ObservationLat }},{{ $observation->ObservationLng }}" allowfullscreen></iframe>
+                <div class="responsive-gmaps map-cover">
+                    <span class="before-map-msg"><span class="glyphicon glyphicon-map-marker text-success"></span></span>
+                    <iframe style="display:none;" frameborder="0" data-src="https://www.google.com/maps/embed/v1/search?key=AIzaSyD4ZNMSDhjetfTQGAlUBse5YAKqTlE4HN8&q={{ $observation->ObservationLat }},{{ $observation->ObservationLng }}" src="" allowfullscreen></iframe>
                 </div>
             </div>
         @endif

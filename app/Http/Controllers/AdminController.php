@@ -30,7 +30,9 @@ class AdminController extends Controller
     public function dash()
     {
         if (Auth::user()->is_admin){
-            $observations = FloraObserve::with('soil', 'contributor')->get();
+            $observations = FloraObserve::with(['soil', 'contributor' => function($q) {
+                $q->with('profile');
+            }])->get();
 
             return view('admin.dash', compact('observations'));
         }

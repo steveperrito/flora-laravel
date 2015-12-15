@@ -29,7 +29,9 @@ class ObservationController extends Controller
      */
     public function index()
     {
-        $observations = FloraObserve::with('soil', 'contributor')
+        $observations = FloraObserve::with(['soil', 'contributor' => function($q){
+            $q->with('profile');
+        }])
             ->where('user_id', '=', \Auth::user()->id)
             ->get();
 
@@ -128,7 +130,9 @@ class ObservationController extends Controller
      */
     public function show($id)
     {
-        $observation = FloraObserve::with('soil')->findOrFail($id);
+        $observation = FloraObserve::with(['soil', 'contributor' => function($q){
+            $q->with('profile');
+        }])->findOrFail($id);
         $user_id = Auth::user()->id;
         $is_admin = Auth::user()->is_admin;
 
@@ -137,6 +141,5 @@ class ObservationController extends Controller
         }
 
         abort(401, 'Unauthorized request.');
-
     }
 }
