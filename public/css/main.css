@@ -61,11 +61,12 @@
   width: 220px;
   margin: auto;
   display: flex;
-  border: 1px dotted black;
+  border: 1px solid #e7e7e7;
   border-radius: 50%;
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
+  background-color: #f8f8f8;
 }
 
 .no-flex {
