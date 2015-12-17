@@ -1,11 +1,19 @@
-$(function(){
-  var stat = $('span.admin-stat');
-  var counters = {};
+$(function () {
+  var stat = $('.admin-stat')
+    , counters = {}
+    , statRow = $('#admin-stats');
 
-  stat.each(function(index){
-    var target = $(this).data('stat');
+  statRow
+    .css('visibility', 'visible')
+    .hide()
+    .fadeIn('slow', startCounting);
 
-    counters[index] = new CountUp(this, 0, target);
-    counters[index].start();
+  function startCounting() {
+    stat.each(function (index) {
+      var target = $(this).data('stat');
+
+      counters[index] = new CountUp(this, 0, target);
+      counters[index].start();
     });
+  }
 });

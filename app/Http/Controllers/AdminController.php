@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\FloraObserve;
-use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Contracts\View\Factory;
 use Auth;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
 
     /**
-     * Auth user
+     * Authorize user
      *
      * AdminController constructor.
      */
@@ -23,18 +23,21 @@ class AdminController extends Controller
     }
 
     /**
-     * Check if user is admin and dump all results.
+     * Authorize admin user and pass data to Dashboard.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|\Illuminate\View\View
      */
     public function dash()
     {
         if (Auth::user()->is_admin){
-            $observations = FloraObserve::with(['soil', 'contributor' => function($q) {
+            $view_var['observations'] = FloraObserve::with(['soil', 'contributor' => function($q) {
                 $q->with('profile');
             }])->get();
+            $view_var['all_observations'] = FloraObserve::count();
+            $view_var['all_users'] = User::count() - 1;
+            $view_var['guest_observes'] = FloraObserve::where('user_id', '=', 2)->count();
 
-            return view('admin.dash', compact('observations'));
+            return view('admin.dash', $view_var);
         }
 
         abort(401, 'Unauthorized request.');

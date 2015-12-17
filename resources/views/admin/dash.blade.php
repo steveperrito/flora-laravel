@@ -5,15 +5,32 @@
         <h1><span class="glyphicon glyphicon-dashboard text-success"></span> Dashboard</h1>
     </section>
 
-    <div class="row" id="admin-stats">
-        <div class="col-sm-4 text-center">
-            <span class="admin-stat" data-stat="100" data-info="Accounts"></span>
-        </div>
-        <div class="col-sm-4 text-center">
-            <span class="admin-stat" data-stat="150" data-info="Observations"></span>
-        </div>
-        <div class="col-sm-4 text-center">
-            <span class="admin-stat" data-stat="89" data-info="Guest Observations"></span>
+    <div class="container-fluid">
+        <div class="row hidden-xs" id="admin-stats">
+            <div class="col-sm-4 text-center">
+                <div class="stat-border">
+                    <div class="no-flex">
+                        <span class="admin-stat" data-stat="{{ $all_users }}" data-info="Accounts"></span><br>
+                        <span>Accounts</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 text-center">
+                <div class="stat-border">
+                    <div class="no-flex">
+                        <span class="admin-stat" data-stat="{{ $guest_observes }}" data-info="Guest Observations"></span><br>
+                        <span>Guest Contributions</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 text-center">
+                <div class="stat-border">
+                    <div class="no-flex">
+                        <span class="admin-stat" data-stat="{{ $all_observations }}" data-info="Observations"></span><br>
+                        <span>Total Contributions</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

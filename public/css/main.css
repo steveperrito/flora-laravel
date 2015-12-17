@@ -45,3 +45,29 @@
 #completeness {
   margin:0 auto;
 }
+
+#admin-stats {
+  margin-bottom: 20px;
+  line-height: 1;
+  visibility: hidden;
+}
+.admin-stat {
+  font-size: 68px;
+  font-weight: 100;
+}
+
+.stat-border {
+  height: 220px;
+  width: 220px;
+  margin: auto;
+  display: flex;
+  border: 1px dotted black;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.no-flex {
+  flex:none;
+}
