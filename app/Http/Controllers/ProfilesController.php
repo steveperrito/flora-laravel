@@ -104,7 +104,9 @@ class ProfilesController extends Controller
                     ->first();
         $nulls = 0;
         $no_val_html = '<a href="#myProfileModal" data-toggle="modal" role="button"><span class="glyphicon glyphicon-question-sign text-danger"></span></a>';
+        $profile_usr = null;
 
+        /*dd($profile);*/
         if ($profile['attributes']) {
             $prof_attrs = count($profile['attributes']) - 4;
             foreach($profile['attributes'] as $attr) {
@@ -113,10 +115,11 @@ class ProfilesController extends Controller
                 }
             }
 
+            $profile_usr = $profile['attributes']['user_id'];
             $nulls = number_format((($prof_attrs - $nulls)/$prof_attrs)*100, 0);
         }
 
-        if (($user_id == $id || $is_admin) && $profile) {
+        if (($user_id == $profile_usr || $is_admin) && $profile) {
             return view('profile.show', ['profile' => $profile, 'nulls' => $nulls, 'no_val' => $no_val_html]);
         }
 

@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="page-header">
-        <h1>Flora Observations</h1>
+        <h1><span class="glyphicon glyphicon-eye-open text-success"></span> My Flora Observations</h1>
     </section>
     @foreach ($observations as $observation)
         @include('partials.item', ['observation' => $observation])

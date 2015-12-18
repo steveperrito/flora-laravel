@@ -20,7 +20,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Flora The Explorer</a>
+            <a class="navbar-brand" href="/">Flora The Explorer <span class="glyphicon glyphicon-leaf"></span></a>
         </div>
 
         <div class="collapse navbar-collapse" id="navbar">
@@ -37,10 +37,13 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ auth()->user()->f_name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url('/observations/create') }}">New Observation</a></li>
-                            <li><a href="{{ url('/observations') }}">My Observations</a></li>
-                            <li><a href="{{ url('/profile') }}">Profile</a></li>
-                            <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
+                            @if(auth()->user()->is_admin)
+                                <li><a href="{{ url('/admin') }}"><span class="glyphicon glyphicon-dashboard text-success"></span> Admin Dash</a></li>
+                            @endif
+                            <li><a href="{{ url('/observations/create') }}"><span class="glyphicon glyphicon-pencil text-success"></span> New Observation</a></li>
+                            <li><a href="{{ url('/observations') }}"><span class="glyphicon glyphicon-eye-open text-success"></span> My Observations</a></li>
+                            <li><a href="{{ url('/profile') }}"><span class="glyphicon glyphicon-user text-success"></span> Profile</a></li>
+                            <li><a href="{{ url('/auth/logout') }}"><span class="glyphicon glyphicon-log-out text-success"></span> Logout</a></li>
                         </ul>
                     </li>
                 @endif

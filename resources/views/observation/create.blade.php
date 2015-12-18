@@ -21,7 +21,7 @@
 <div class="spinner hidden"><span class="glyphicon glyphicon-refresh text-success"></span></div>
 
     <section class="page-header">
-        <h1>Log Flora Observation</h1>
+        <h1><span class="glyphicon glyphicon-pencil text-success"></span> Log Flora Observation</h1>
     </section>
 
 
