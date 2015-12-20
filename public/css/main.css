@@ -72,3 +72,8 @@
 .no-flex {
   flex:none;
 }
+
+.row-buffer {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

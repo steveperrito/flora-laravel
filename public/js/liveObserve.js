@@ -1,31 +1,37 @@
 $(function(){
-  var inFieldRadio = $('input[name=in_field]'),
-      latInput = $('input[name=ObservationLat]'),
-      lngInput = $('input[name=ObservationLng]'),
-      headerText = $('section.page-header>h1'),
-      locationHelp = $('p.location-help'),
-      modalBody = $('div.modal-body'),
-      locationText = $('textarea[name=PlantLocation]'),
-      weatherCond = $('input[name=WeatherConditions]'),
-      temp = $('input[name=Temp]'),
-      iconWrap = $('span.weather-icon'),
-      manualRadio = $('input[type=radio]').eq(1),
-      spinner = $('div.spinner'),
-      body = $('body'),
-      modalBackDrop = '<div class="modal-backdrop fade in"></div>',
-      observedAt = $('.observed-at'),
-      observedAtInput = $('input[name=observed_at]'),
-      observedAtHr = $('.observed-at-hr'),
-      observedAtHrInput = $('input[name=observed_at_hr]'),
-      amPmInput = $('input[name=am_pm]'),
-      amPmMenu = $('#am-pm'),
-      amPmSelect = $('.meridiem');
+  var inFieldInput = $('input[name=in_field]')
+    , inFieldBtns = $('.observation-type')
+    , latInput = $('input[name=ObservationLat]')
+    , lngInput = $('input[name=ObservationLng]')
+    , headerText = $('section.page-header>h1')
+    , locationHelp = $('p.location-help')
+    , modalBody = $('div.modal-body')
+    , locationText = $('textarea[name=PlantLocation]')
+    , weatherCond = $('input[name=WeatherConditions]')
+    , temp = $('input[name=Temp]')
+    , iconWrap = $('span.weather-icon')
+    , manualRadio = $('input[type=radio]').eq(1)
+    , spinner = $('div.spinner')
+    , body = $('body')
+    , modalBackDrop = '<div class="modal-backdrop fade in"></div>'
+    , observedAt = $('.observed-at')
+    , observedAtInput = $('input[name=observed_at]')
+    , observedAtHr = $('.observed-at-hr')
+    , observedAtHrInput = $('input[name=observed_at_hr]')
+    , amPmInput = $('input[name=am_pm]')
+    , amPmMenu = $('#am-pm')
+    , amPmSelect = $('.meridiem');
 
-  inFieldRadio.change(function(){
+  inFieldBtns.click(function(){
 
-    var inFeild = $(this).val() == 1;
+    var inField = /(In Field Observation)/.test($(this).text());
 
-    if (!inFeild) {
+    if (!$(this).hasClass('active')) inFieldBtns.toggleClass('active');
+    else return;
+
+    inFieldInput.val(inField ? 1 : 0);
+
+    if (!inField) {
       pastObserve();
     }
 
@@ -33,7 +39,7 @@ $(function(){
       goOffAir(false);
     }
 
-    else if (inFeild && navigator.geolocation) {
+    else if (inField && navigator.geolocation) {
       body.addClass('modal-open').append(modalBackDrop);
       spinner.removeClass('hidden');
       navigator.geolocation.getCurrentPosition(goLive, goOffAir);
