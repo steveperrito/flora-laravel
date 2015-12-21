@@ -55,12 +55,12 @@ $(function(){
 
   function goLive(position) {
 
-    var lat = position.coords.latitude.toFixed(6),
-        lng = position.coords.longitude.toFixed(6),
-        nowObj = moment(),
-        nowStr = nowObj.format('YYYY-MM-DD'),
-        nowHr = nowObj.format('h:mm'),
-        amPm = nowObj.format('A');
+    var lat = position.coords.latitude.toFixed(6)
+      , lng = position.coords.longitude.toFixed(6)
+      , nowObj = moment()
+      , nowStr = nowObj.format('YYYY-MM-DD')
+      , nowHr = nowObj.format('h:mm')
+      , amPm = nowObj.format('A');
 
     latInput.val(lat);
     lngInput.val(lng);
@@ -148,10 +148,10 @@ $(function(){
     console.log(url);
     $.getJSON(url, function(data) {
       console.log(data);
-      var description = data.weather[0].description,
-          temperature = data.main.temp,
-          icon = data.weather[0].icon,
-          cityTown = data.name;
+      var description = data.weather[0].description
+        , temperature = data.main.temp
+        , icon = data.weather[0].icon
+        , cityTown = data.name;
 
       weatherCond.val(description);
       temp.val(temperature);
@@ -161,5 +161,4 @@ $(function(){
       locationText.val(cityTown);
     });
   }
-
 });

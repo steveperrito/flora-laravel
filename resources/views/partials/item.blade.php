@@ -11,7 +11,7 @@
 
                     @if($observation->contributor->id == 2)
                         <span data-toggle="tooltip" data-placement="top" title="Guest Submission" class="glyphicon glyphicon-question-sign"></span>
-                    @elseif($observation->contributor->profile->id)
+                    @elseif($observation->contributor->profile)
                         <a href="/profile/{{ $observation->contributor->profile->id }}" data-toggle="tooltip" data-placement="top" title="{{ $observation->contributor->email }}"><span class="glyphicon glyphicon-ok-sign text-success"></span></a>
                     @else
                         <span data-toggle="tooltip" data-placement="top" title="{{ $observation->contributor->email }}" class="glyphicon glyphicon-ok-sign text-success"></span>
