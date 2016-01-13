@@ -34,3 +34,6 @@ Route::controllers([
   'auth' => 'Auth\AuthController',
   'password' => 'Auth\PasswordController'
 ]);
+
+//github oAuth login url
+Route::get('login', 'oAuthController@gitLogin');

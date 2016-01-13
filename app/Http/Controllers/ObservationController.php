@@ -32,7 +32,7 @@ class ObservationController extends Controller
         $observations = FloraObserve::with(['soil', 'contributor' => function($q){
             $q->with('profile');
         }])
-            ->where('user_id', '=', \Auth::user()->id)
+            ->where('user_id', '=', Auth::user()->id)
             ->get();
 
         return view('observation.list', compact('observations'));
