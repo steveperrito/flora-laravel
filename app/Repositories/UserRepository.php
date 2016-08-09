@@ -25,7 +25,7 @@ class UserRepository {
 
     private function splitName($spacedName)
     {
-        $broke_up = explode($spacedName);
+        $broke_up = explode(' ', $spacedName);
         $first = $broke_up[0];
         $last = implode(' ', array_slice($broke_up, 1));
 
